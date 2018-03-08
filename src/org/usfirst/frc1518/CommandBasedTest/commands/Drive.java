@@ -10,7 +10,7 @@ public class Drive extends Command {
 
 	public Drive() {
 		// TODO Auto-generated constructor stub
-		requires(Robot.driveTrain);
+		//requires(Robot.driveTrain);
 	}
 
 	public Drive(String name) {
@@ -32,11 +32,11 @@ public class Drive extends Command {
 
 		if (Robot.isTankMode == true) {
 			if (Robot.isReversed == true) {
-				Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY(), Robot.oi.mainstick.getY());
+				Robot.driveTrain.driveCartesian(Robot.oi.mainstick.getY(), Robot.oi.mainstick.getX(), Robot.oi.mainstick.getZ());
 			}
 			else {
 				// reversing zAxis when steering reversed
-				Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY() * -1, Robot.oi.mainstick.getY() * -1);
+				Robot.driveTrain.driveCartesian(Robot.oi.mainstick.getY() * -1, Robot.oi.mainstick.getX() * -1, Robot.oi.mainstick.getZ());
 			}
 		}
 		else {
@@ -54,19 +54,19 @@ public class Drive extends Command {
 
 			if (Robot.isReversed == true) {
 				if (OI.turbo.get() == true) {
-					Robot.driveTrain.takeJoystickInputs(liveY * -1, steering);
+					Robot.driveTrain.driveCartesian(liveY * -1, 0, steering);
 				}
 				else {
-				Robot.driveTrain.takeJoystickInputs(liveY * -.80, steering);
+				Robot.driveTrain.driveCartesian(liveY * -.80, 0, steering);
 				}
 			}
 			else {
 				// reversing drive and steering when in reversed drive
 				if (OI.turbo.get() == true) {
-					Robot.driveTrain.takeJoystickInputs(liveY * 1, steering);
+					Robot.driveTrain.driveCartesian(liveY * 1, 0, steering);
 				}
 				else {
-				Robot.driveTrain.takeJoystickInputs(liveY * .80, steering);
+				Robot.driveTrain.driveCartesian(liveY * .80, 0, steering);
 				}
 			}
 
@@ -78,7 +78,7 @@ public class Drive extends Command {
 		return false;
 	}
 	protected void end() {
-		Robot.driveTrain.stop();
+		//Robot.driveTrain.stop();
 	}
 	protected void interrupted(){
 		end();
